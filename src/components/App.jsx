@@ -13,7 +13,7 @@ const phoneContacts = [
 
 export const App = () => {
   const [contacts, setContacts] = useState(() => {
-    return phoneContacts ?? JSON.parse(window.localStorage.getItem('contacts'));
+    return JSON.parse(window.localStorage.getItem('contacts')) ?? phoneContacts;
   });
 
   const [filter, setFilter] = useState('');
@@ -42,9 +42,9 @@ export const App = () => {
     setFilter(event.currentTarget.value.trim());
   };
 
-  const onDeleteContact = ContactId => {
+  const onDeleteContact = contactId => {
     setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== ContactId)
+      prevContacts.filter(contact => contact.id !== contactId)
     );
   };
 
